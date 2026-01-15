@@ -1,113 +1,1013 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Color Chalk AI | Autonomous Business System</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b0f1a" />
+
+  <title>Color Chalk LLC — AUTOBUS | Deterministic AI orchestration for business initiatives</title>
+  <meta
+    name="description"
+    content="AUTOBUS orchestrates end-to-end business initiatives by combining LLM-based agents, logic programming, and enterprise data for deterministic, auditable execution."
+  />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Color Chalk LLC — AUTOBUS" />
+  <meta property="og:description" content="Deterministic AI orchestration for end-to-end business initiatives." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://colorchalk.ai/" />
+  <!-- Optional: Add your social preview image -->
+  <!-- <meta property="og:image" content="https://colorchalk.ai/og-image.png" /> -->
+
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fdfcf8;
-      color: #333;
+    :root{
+      --bg: #070914;
+      --panel: rgba(255,255,255,0.06);
+      --panel-2: rgba(255,255,255,0.09);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.70);
+      --faint: rgba(255,255,255,0.55);
+      --border: rgba(255,255,255,0.14);
+
+      --accent: #7c3aed;      /* violet */
+      --accent-2: #22c55e;    /* green */
+      --accent-3: #06b6d4;    /* cyan */
+
+      --shadow: 0 14px 40px rgba(0,0,0,0.45);
+      --radius: 18px;
+      --max: 1120px;
+
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
     }
-    header {
-      background: #2e2b2b; /* Chalkboard gray-black */
-      color: #fff;
-      padding: 1.5rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+
+    *{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior: auto; }
+      *{ animation: none !important; transition: none !important; }
     }
-    header h1 {
-      margin: 0;
-      font-size: 1.8rem;
-      background: linear-gradient(45deg, #ff8a80, #ffd180, #ffff8d, #ccff90, #80d8ff, #ea80fc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: bold;
+
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(124,58,237,0.35), transparent 60%),
+        radial-gradient(900px 500px at 90% 10%, rgba(6,182,212,0.25), transparent 55%),
+        radial-gradient(900px 600px at 50% 110%, rgba(34,197,94,0.18), transparent 55%),
+        linear-gradient(180deg, #060713 0%, #070914 40%, #050611 100%);
+      overflow-x:hidden;
     }
-    nav a {
-      color: #fafafa;
-      margin-left: 1.5rem;
+
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: underline; text-underline-offset: 4px; }
+    .container{ width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+
+    .skip{
+      position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skip:focus{
+      position:fixed; left:14px; top:14px; width:auto; height:auto;
+      padding:10px 12px; background:#0b1220; border:1px solid var(--border);
+      border-radius: 10px; z-index: 9999;
+    }
+
+    /* Header */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(7,9,20,0.55);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 0;
+      gap: 18px;
+    }
+    .brand{
+      display:flex; align-items:center; gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
+    }
+    .brand-badge{
+      width: 30px; height: 30px; border-radius: 9px;
+      background:
+        linear-gradient(135deg, rgba(124,58,237,1), rgba(6,182,212,1));
+      box-shadow: 0 10px 28px rgba(124,58,237,0.18);
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+    .brand span{ display:block; }
+    .brand small{ display:block; color: var(--muted); font-weight: 600; margin-top: 1px; }
+
+    .navlinks{
+      display:flex; align-items:center; gap: 16px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .navlinks a{ padding: 8px 10px; border-radius: 10px; }
+    .navlinks a:hover{
+      background: rgba(255,255,255,0.06);
       text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
     }
-    nav a:hover {
-      color: #ffd180;
+
+    .nav-cta{
+      display:flex; align-items:center; gap: 10px;
     }
-    .hero {
-      padding: 4rem 2rem;
-      text-align: center;
-      background: linear-gradient(to right, #80d8ff, #ea80fc);
-      color: white;
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap: 10px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      font-weight: 700;
+      font-size: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.22);
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
     }
-    .hero h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.09);
+      border-color: rgba(255,255,255,0.22);
+      text-decoration:none;
     }
-    .hero p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: 0 auto;
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(124,58,237,1), rgba(6,182,212,1));
+      border-color: rgba(255,255,255,0.22);
     }
-    .section {
-      padding: 3rem 2rem;
-      max-width: 900px;
-      margin: 0 auto;
+    .btn.primary:hover{
+      background: linear-gradient(135deg, rgba(124,58,237,0.95), rgba(6,182,212,0.95));
     }
-    .section h3 {
-      font-size: 1.6rem;
-      margin-bottom: 1rem;
-      color: #444;
+    .btn.ghost{
+      background: rgba(255,255,255,0.02);
+      box-shadow:none;
     }
-    .footer {
-      text-align: center;
-      padding: 2rem;
-      background-color: #f1f1f1;
-      font-size: 0.9rem;
-      color: #666;
+
+    /* Mobile nav */
+    .hamburger{
+      display:none;
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+    }
+    .hamburger:focus{ outline: 2px solid rgba(6,182,212,0.55); outline-offset: 2px; }
+
+    @media (max-width: 920px){
+      .navlinks{ display:none; }
+      .hamburger{ display:inline-flex; }
+    }
+
+    .mobile-panel{
+      display:none;
+      padding: 10px 0 16px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .mobile-panel a{
+      display:block;
+      padding: 12px 10px;
+      margin: 4px 0;
+      border-radius: 12px;
+      color: var(--muted);
+      font-weight: 700;
+      text-decoration:none;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+    .mobile-panel a:hover{ background: rgba(255,255,255,0.06); color: var(--text); }
+    .mobile-panel .row{ display:flex; gap:10px; margin-top: 10px; flex-wrap: wrap; }
+    .mobile-panel .row .btn{ flex: 1; min-width: 170px; }
+
+    /* Hero */
+    .hero{
+      padding: 72px 0 18px;
+      position: relative;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: start;
+    }
+    @media (max-width: 980px){
+      .hero-grid{ grid-template-columns: 1fr; }
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .kicker b{
+      color: rgba(255,255,255,0.94);
+      font-weight: 800;
+    }
+
+    h1{
+      margin: 14px 0 12px;
+      font-size: clamp(34px, 5vw, 54px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+    .subtitle{
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 0 0 18px;
+      max-width: 62ch;
+    }
+    .hero-cta{
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .fineprint{
+      margin-top: 14px;
+      color: var(--faint);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .panel{
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-card{
+      padding: 18px;
+      position: relative;
+      overflow:hidden;
+    }
+    .hero-card::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:
+        radial-gradient(500px 220px at 20% 10%, rgba(124,58,237,0.35), transparent 60%),
+        radial-gradient(520px 260px at 80% 30%, rgba(6,182,212,0.28), transparent 60%),
+        radial-gradient(520px 280px at 40% 110%, rgba(34,197,94,0.18), transparent 60%);
+      pointer-events:none;
+      opacity: 0.85;
+    }
+    .hero-card > *{ position: relative; }
+
+    .mini-title{
+      display:flex; align-items:center; justify-content:space-between;
+      gap: 10px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+      margin-bottom: 12px;
+    }
+    .mini-title h2{
+      margin:0;
+      font-size: 15px;
+      letter-spacing: 0.2px;
+      color: rgba(255,255,255,0.92);
+    }
+    .pill{
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: rgba(255,255,255,0.82);
+      white-space: nowrap;
+    }
+
+    .bullets{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .bullets li{
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+      padding: 10px 10px;
+      border-radius: 14px;
+      background: rgba(0,0,0,0.10);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .dot{
+      width: 12px; height: 12px;
+      border-radius: 4px;
+      margin-top: 4px;
+      flex: 0 0 12px;
+      background: linear-gradient(135deg, rgba(124,58,237,1), rgba(6,182,212,1));
+    }
+    .bullets b{ color: rgba(255,255,255,0.94); }
+    .bullets p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    /* Section styles */
+    section{ padding: 56px 0; }
+    .section-head{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    .section-head h2{
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: -0.01em;
+    }
+    .section-head p{
+      margin: 0;
+      color: var(--muted);
+      max-width: 70ch;
+      line-height: 1.55;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 980px){
+      .grid-3{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      padding: 18px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+    }
+    .card h3{
+      margin: 0 0 8px;
+      font-size: 16px;
+      letter-spacing: 0.2px;
+    }
+    .card p{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .step{
+      display:grid;
+      grid-template-columns: 44px 1fr;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .badge{
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight: 900;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: rgba(255,255,255,0.92);
+      font-family: var(--mono);
+    }
+    .step h4{
+      margin: 0 0 4px;
+      font-size: 15px;
+      letter-spacing: 0.1px;
+    }
+    .step p{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .callout{
+      padding: 18px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.12);
+      background:
+        radial-gradient(600px 260px at 15% 10%, rgba(124,58,237,0.20), transparent 55%),
+        radial-gradient(620px 240px at 85% 30%, rgba(6,182,212,0.16), transparent 55%),
+        rgba(255,255,255,0.03);
+    }
+    .callout h3{ margin: 0 0 8px; font-size: 18px; }
+    .callout p{ margin: 0; color: var(--muted); line-height: 1.6; }
+
+    .two-col{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items:start;
+    }
+    @media (max-width: 980px){
+      .two-col{ grid-template-columns: 1fr; }
+    }
+
+    /* Comparison table */
+    .table-wrap{
+      overflow-x:auto;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.03);
+    }
+    table{
+      width:100%;
+      border-collapse: collapse;
+      min-width: 720px;
+    }
+    th, td{
+      text-align:left;
+      vertical-align: top;
+      padding: 14px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.88);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+    th{
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.04);
+    }
+    tr:last-child td{ border-bottom: none; }
+    td span{
+      display:inline-block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* FAQ */
+    details{
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.03);
+      border-radius: 16px;
+      padding: 14px 14px;
+    }
+    details + details{ margin-top: 10px; }
+    summary{
+      cursor:pointer;
+      font-weight: 800;
+      color: rgba(255,255,255,0.92);
+      outline: none;
+      list-style: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    details p{
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    /* Footer */
+    footer{
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 28px 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .footer-grid{
+      display:flex;
+      justify-content:space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      align-items:center;
+    }
+    .footer-links{
+      display:flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items:center;
+    }
+    .footer-links a{ color: var(--muted); font-weight: 700; }
+    .footer-links a:hover{ color: rgba(255,255,255,0.92); text-decoration:none; }
+
+    /* Small helpers */
+    .muted{ color: var(--muted); }
+    .nowrap{ white-space: nowrap; }
+    code.inline{
+      font-family: var(--mono);
+      font-size: 0.95em;
+      padding: 2px 6px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
     }
   </style>
 </head>
+
 <body>
+  <a class="skip" href="#main">Skip to content</a>
 
   <header>
-    <h1>Color Chalk AI</h1>
-    <nav>
-      <a href="#system">System</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <div class="container">
+      <div class="nav" role="navigation" aria-label="Primary">
+        <a class="brand" href="#top" aria-label="Color Chalk home">
+          <span class="brand-badge" aria-hidden="true"></span>
+          <span>
+            Color Chalk
+            <small>AUTOBUS — Autonomous Business System</small>
+          </span>
+        </a>
+
+        <nav class="navlinks" aria-label="Sections">
+          <a href="#product">Product</a>
+          <a href="#how">How it works</a>
+          <a href="#value">Why it matters</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+
+        <div class="nav-cta">
+          <button class="hamburger" id="navToggle" aria-label="Open menu" aria-expanded="false">
+            ☰
+          </button>
+          <a class="btn ghost" href="" target="_blank" rel="noreferrer">
+            View AUTOBUS paper
+          </a>
+          <a class="btn primary" href="#contact">
+            Request a pilot
+          </a>
+        </div>
+      </div>
+
+      <div class="mobile-panel" id="mobilePanel" aria-label="Mobile menu">
+        <a href="#product">Product</a>
+        <a href="#how">How it works</a>
+        <a href="#value">Why it matters</a>
+        <a href="#case-study">Case study</a>
+        <a href="#customers">Customers</a>
+        <a href="#faq">FAQ</a>
+
+        <div class="row">
+          <a class="btn ghost" href="https://github.com/cecilpang/autobus-paper" target="_blank" rel="noreferrer">
+            View reference implementation
+          </a>
+          <a class="btn primary" href="#contact">Request a pilot</a>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <section class="hero">
-    <h2>Autonomous Business System</h2>
-    <p>Color Chalk AI is building the future of enterprise with AUTOBUS—our human-expert-supervised, multi-agent framework for intelligent automation of businesses.</p>
-  </section>
+  <main id="main">
+    <!-- HERO -->
+    <div id="top" class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <div class="kicker" aria-label="Product positioning">
+              <b>Neuro-symbolic AI</b>
+              <span class="muted">for business initiatives</span>
+            </div>
 
-  <section id="system" class="section">
-    <h3>What is AUTOBUS?</h3>
-    <p>AUTOBUS (Autonomous Business System) is a multi-agent framework that enables rapid, end-to-end deployment of business capabilities—powered by human expertise and intelligent agents. It combines AI, data architecture, and structured workflows to automate and enhance complex cross-functional operations at a fraction of the time and cost.</p>
-  </section>
+            <h1>
+              Enterprise initiative automation with
+              <span class="nowrap">verifiable AI</span>.
+            </h1>
 
-  <section id="about" class="section">
-    <h3>About Color Chalk AI</h3>
-    <p>Color Chalk AI is a research-driven startup creating intelligent systems that enhance human potential in business. The company originated from a Systems Science PhD research lab, where the founder is not only leading the research on autonomous business system but also actively shaping its real-world applications.</p>
-    <p>With a rare combination of academic depth and extensive hands-on industry experience, the founder brings years of applying AI to complex business systems. This dual role of researcher and practitioner enables Color Chalk to bridge the gap between cutting-edge scientific research and scalable, practical implementation. The result is a new class of intelligent business systems designed for real impact.</p>
-  </section>
+            <p class="subtitle">
+              <b>AUTOBUS</b> represents a business initiative as a structured network of tasks. 
+              It combines the semantic flexibility of LLM agents with the deterministic rigor of logic programming,
+              grounded in your enterprise data.
+            </p>
 
-  <section id="contact" class="section">
-    <h3>Contact Us</h3>
-    <p>Email: cpang2@binghamton.edu<br>Follow us on LinkedIn, X, and GitHub.</p>
-  </section>
+            <div class="hero-cta">
+              <a class="btn primary" href="#contact">Request a pilot</a>
+              <a class="btn" href="#how">See the pipeline</a>
+              <!-- Optional: link to your hosted PDF -->
+              <!-- <a class="btn ghost" href="/autobus-paper.pdf" target="_blank" rel="noreferrer">Read the paper</a> -->
+            </div>
 
-  <footer class="footer">
-    &copy; 2025 Color Chalk AI. All rights reserved.
+            <p class="fineprint">
+              Built for data-rich organizations where workflows span across teams
+              and where compliance, constraints, and auditability are non‑negotiable.
+            </p>
+          </div>
+
+          <aside class="hero-card panel" aria-label="Key differentiators">
+            <div class="mini-title">
+              <h2>What AUTOBUS delivers</h2>
+              <span class="pill">LLM + Logic + Enterprise Data</span>
+            </div>
+
+            <ul class="bullets">
+              <li>
+                <span class="dot" aria-hidden="true"></span>
+                <div>
+                  <p><b>Deterministic execution</b> via a logic engine that enforces foundational rules and executes task logic reliably.</p>
+                </div>
+              </li>
+              <li>
+                <span class="dot" aria-hidden="true"></span>
+                <div>
+                  <p><b>Semantic grounding</b> by translating enterprise entities, their relationships, and rules into logic facts.</p>
+                </div>
+              </li>
+              <li>
+                <span class="dot" aria-hidden="true"></span>
+                <div>
+                  <p><b>Transparent decision paths</b> with explicit predicates, rules, and outcomes — easier to audit than heuristic-only agents.</p>
+                </div>
+              </li>
+              <li>
+                <span class="dot" aria-hidden="true"></span>
+                <div>
+                  <p><b>Tool orchestration</b> across APIs, ML models, and domain-specific agents for data retrieval and real-world actions.</p>
+                </div>
+              </li>
+              <li>
+                <span class="dot" aria-hidden="true"></span>
+                <div>
+                  <p><b>Human governance</b> for policies, ontology/semantics, tool curation, and high-impact decision supervision.</p>
+                </div>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT -->
+    <section id="product">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>AUTOBUS is enterprise-first, not department-first</h2>
+            <p>
+              Traditional enterprise systems optimize isolated workflows. LLM agents add semantic ability, but can be unreliable in long, business rules-heavy reasoning.
+              AUTOBUS treats the <b>business initiative</b> as the primary unit: an end-to-end objective with tasks, rules, data, metrics, and actions.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid-3" role="list">
+          <div class="card" role="listitem">
+            <h3>Represent initiatives as structured task networks</h3>
+            <p>
+              Each task has formal pre-/post-conditions, required data, evaluation metrics, task rules, and executable actions.
+              Tasks can run in parallel and be iterative.
+            </p>
+          </div>
+
+          <div class="card" role="listitem">
+            <h3>Generate executable logic programs per task</h3>
+            <p>
+              LLM agents translate natural language instructions into structured predicates for task-specific rules,
+              connect with facts from enterprise data, and enrich with tools.
+            </p>
+          </div>
+
+          <div class="card" role="listitem">
+            <h3>Execute deterministically, evaluate continuously</h3>
+            <p>
+              A logic engine executes the generated logic programs, enforces constraints, and produces verifiable outcomes
+              aligned with your evaluation metrics.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>From task specifications to execution — a full pipeline</h2>
+            <p>
+              AUTOBUS turns initiative definitions into action by combining enterprise data, LLM-generated rules, and deterministic logic execution.
+            </p>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="panel" style="padding: 18px;">
+            <div class="mini-title">
+              <h2 style="margin:0;font-size:15px;">Pipeline</h2>
+              <span class="pill">spec → ground → generate → execute → evaluate</span>
+            </div>
+
+            <div class="steps" aria-label="AUTOBUS pipeline steps">
+              <div class="step">
+                <div class="badge">1</div>
+                <div>
+                  <h4>Specification</h4>
+                  <p>Humans define the objective, tasks, data, success metrics, and constraints.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="badge">2</div>
+                <div>
+                  <h4>Semantic grounding</h4>
+                  <p>Enterprise data are translated into logic facts and foundational rules.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="badge">3</div>
+                <div>
+                  <h4>Logic generation</h4>
+                  <p>LLM agents generate task-specific rules and predicates, with data retrieval and actions.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="badge">4</div>
+                <div>
+                  <h4>Execution</h4>
+                  <p>The logic engine runs the program deterministically, providing verifiable outcomes.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="badge">5</div>
+                <div>
+                  <h4>Evaluation</h4>
+                  <p>Metrics and evaluation rules are computed continuously to validate outcomes and guide iteration.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout" aria-label="Neuro-symbolic bridge">
+            <h3>Best of two paradigms</h3>
+            <p>
+              AUTOBUS is a data driven neuro-symbolic system:
+              <b>LLMs</b> provide semantic flexibility,
+              while <b>logic programming</b> provides deterministic, interpretable execution with consistently reproducible outcomes.
+            </p>
+
+            <div style="height: 14px;"></div>
+
+            <div class="two-col" style="gap:12px;">
+              <div class="card" style="background: rgba(255,255,255,0.03);">
+                <h3 style="margin-bottom:6px;">LLM agents</h3>
+                <p>
+                  interpret instructions and translate business language to structured predicates,
+                  and decide what enterprise data and tool calls are needed to ground missing facts.
+                </p>
+              </div>
+              <div class="card" style="background: rgba(255,255,255,0.03);">
+                <h3 style="margin-bottom:6px;">Logic engine</h3>
+                <p>
+                  executes the generated programs deterministically—providing transparent decision paths.
+                </p>
+              </div>
+            </div>
+
+            <div style="height: 14px;"></div>
+            <p class="muted">
+              Result: business initiatives that adapt to changes timely like LLMs, but run reliably like formal systems.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUE -->
+    <section id="value">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Why it matters</h2>
+            <p>
+              Digital transformation often fails at the seams — where multiple departmental teams must collaborate.
+              AUTOBUS is designed to reconfigure cross-functional initiatives quickly.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid-3" role="list">
+          <div class="card" role="listitem">
+            <h3>Time-to-market advantage</h3>
+            <p>
+              Faster iteration by updatind task instructions and policies, re-generate logic programs, and redeploy workflows rapidly
+              — without rebuilding bespoke pipelines for every change.
+            </p>
+          </div>
+          <div class="card" role="listitem">
+            <h3>Auditability and compliance</h3>
+            <p>
+              Decisions are represented as explicit predicates and rules, and executed deterministically,
+              making it easier to inspect “why” a decision happened and to enforce constraints consistently.
+            </p>
+          </div>
+          <div class="card" role="listitem">
+            <h3>Reduced dependency on scarce engineering</h3>
+            <p>
+              Shift effort from hard-coding orchestration to defining semantics, policies, and task instructions
+              — with AI agents handling rule construction and integration planning.
+            </p>
+          </div>
+        </div>
+
+        <div style="height: 18px;"></div>
+      </div>
+    </section>
+
+  
+    <!-- GOVERNANCE -->
+    <section id="governance">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Human governance by design</h2>
+            <p>
+              AUTOBUS assures that humans remain accountable for business semantics, policies, and high-impact decisions —
+              while the system accelerates execution and iteration.
+            </p>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="card">
+            <h3>Preparation</h3>
+            <p>
+              Define and maintain business semantics (ontology, reference data models), establish policies and constraints,
+              and curate the tool ecosystem (APIs, models, agents).
+            </p>
+          </div>
+          <div class="card">
+            <h3>During execution</h3>
+            <p>
+              Review high-impact decisions, supervise exceptions, and iteratively refine task instructions
+              based on outcomes and evaluation metrics.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>FAQ</h2>
+            <p>
+              Practical questions we hear from teams evaluating initiative orchestration with AI.
+            </p>
+          </div>
+        </div>
+
+        <details>
+          <summary>Is AUTOBUS a workflow engine?</summary>
+          <p>
+            AUTOBUS orchestrates business initiatives, but it differs from traditional workflow engines by generating task logic programs
+            from natural language instructions plus enterprise data, then executing them deterministically with a logic engine.
+          </p>
+        </details>
+
+        <details>
+          <summary>What makes it “deterministic” if LLMs are involved?</summary>
+          <p>
+            LLMs generate task predicates/rules and help ground semantics, but the final execution happens in a logic engine.
+            That engine enforces constraints and executes the program consistently, producing transparent decision paths.
+          </p>
+        </details>
+
+        <details>
+          <summary>Do we need a knowledge graph to start?</summary>
+          <p>
+            AUTOBUS is strongest when enterprise data is organized around business entities and relationships with explicit constraints.
+            Many organizations can start by linking their enterprise data to key entities to form a lightweight knowledge graph layer and expand iteratively.
+          </p>
+        </details>
+
+        <details>
+          <summary>How does AUTOBUS connect to our systems?</summary>
+          <p>
+            Through a tool layer: APIs, machine learning models, and domain-specific agents. Tools are used to fetch missing facts
+            (e.g., real-time data) and to take actions (e.g., update records, trigger campaigns, persist outputs).
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <!-- CONTACT / CTA -->
+    <section id="contact">
+      <div class="container">
+        <div class="callout">
+          <h3>Want to validate AUTOBUS in your environment?</h3>
+          <p>
+            We’re looking for teams running cross-functional, data-rich initiatives where deterministic execution and auditability matter.
+            Let’s discuss a pilot focused on one initiative and a small set of enterprise entities and tools.
+          </p>
+
+          <div style="height: 16px;"></div>
+
+          <div class="two-col">
+            <div class="card" style="background: rgba(255,255,255,0.03);">
+              <h3>Quick start pilot</h3>
+              <p>
+                1) Pick one initiative<br/>
+                2) Define tasks + metrics<br/>
+                3) Map semantics for a small entity set<br/>
+                4) Connect 1–3 tools/APIs<br/>
+                5) Run, evaluate, iterate
+              </p>
+            </div>
+
+            <div class="card" style="background: rgba(255,255,255,0.03);">
+              <h3>Contact</h3>
+              <p>
+                Replace the link below with your preferred email or scheduling URL.<br/><br/>
+                <a class="btn primary" href="mailto:cpang2@binghamton.edu">Email: cpang2@binghamton.edu</a>
+                <br/><br/>
+                <a class="btn" href="" target="_blank" rel="noreferrer">
+                  View the AUTOBUS paper
+                </a>
+              </p>
+            </div>
+          </div>
+
+          <div style="height: 10px;"></div>
+          <p class="muted">
+            Color Chalk LLC • Building reliable, enterprise-first orchestration with neuro-symbolic AI.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div style="font-weight: 900; color: rgba(255,255,255,0.88);">Color Chalk LLC</div>
+          <div class="muted">© <span id="year"></span> • AUTOBUS</div>
+        </div>
+
+        <div class="footer-links" aria-label="Footer links">
+          <a href="#product">Product</a>
+          <a href="#how">How it works</a>
+          <a href="#case-study">Case study</a>
+          <a href="#customers">Customers</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
   </footer>
 
+  <script>
+    // Mobile menu toggle
+    (function () {
+      const toggle = document.getElementById('navToggle');
+      const panel = document.getElementById('mobilePanel');
+      if (!toggle || !panel) return;
+
+      toggle.addEventListener('click', () => {
+        const isOpen = panel.style.display === 'block';
+        panel.style.display = isOpen ? 'none' : 'block';
+        toggle.setAttribute('aria-expanded', String(!isOpen));
+        toggle.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+      });
+
+      // Close menu when a link is clicked
+      panel.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', () => {
+          panel.style.display = 'none';
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-label', 'Open menu');
+        });
+      });
+    })();
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
-
