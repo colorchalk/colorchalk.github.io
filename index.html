@@ -92,16 +92,19 @@
       gap: 18px;
     }
     .brand{
-      display:flex; align-items:center; gap: 10px;
+      display:flex; align-items:center; gap: 6px;
       font-weight: 700;
       letter-spacing: 0.2px;
       white-space: nowrap;
     }
-    .brand-badge{
-      width: 30px; height: 30px; border-radius: 9px;
-      background: linear-gradient(135deg, rgba(124,58,237,1), rgba(6,182,212,1));
-      box-shadow: 0 10px 28px rgba(6,182,212,0.12);
-      border: 1px solid rgba(17,24,39,0.10);
+    .brand-logo{
+      width: 62px;
+      height: 62px;
+      border-radius: 9px;
+      object-fit: cover;
+      padding: 1px;
+      box-shadow: 0 10px 28px rgba(17,24,39,0.10);
+      background: #000000;
     }
     .brand span{ display:block; }
     .brand small{ display:block; color: var(--muted); font-weight: 600; margin-top: 1px; }
@@ -554,7 +557,7 @@
     <div class="container">
       <div class="nav" role="navigation" aria-label="Primary">
         <a class="brand" href="#top" aria-label="Color Chalk home">
-          <span class="brand-badge" aria-hidden="true"></span>
+          <img class="brand-logo" src="color_chalk_logo_8_0_black.png" alt="Color Chalk logo" width="62" height="62" />
           <span>
             Color Chalk
             <small>AUTOBUS — Autonomous Business System</small>
@@ -676,6 +679,43 @@
         </div>
       </div>
     </div>
+
+    <!-- Add this section (e.g., right after the HERO, before PRODUCT) -->
+    <section id="trusted">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Trusted by</h2>
+            <p>
+              Programs supporting AUTOBUS commercialization and development.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid-3" role="list" aria-label="Trusted by programs">
+          <div class="card" role="listitem">
+            <h3>NSF I-Corps</h3>
+            <p>
+              National Science Foundation Innovation Corps program supporting customer discovery and commercialization.
+            </p>
+          </div>
+
+          <div class="card" role="listitem">
+            <h3>NVIDIA Inception</h3>
+            <p>
+              NVIDIA’s startup program supporting cutting-edge AI companies with resources and technical enablement.
+            </p>
+          </div>
+
+          <div class="card" role="listitem">
+            <h3>Research-backed</h3>
+            <p>
+              Built on the founder’s Autonomous Business System research and peer-reviewed publications.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- PRODUCT -->
     <section id="product">
