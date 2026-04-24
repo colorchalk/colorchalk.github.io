@@ -379,6 +379,17 @@
       font-size: 16px;
       letter-spacing: 0.2px;
     }
+    .program-title{
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .program-icon{
+      width: 20px;
+      height: 20px;
+      flex: 0 0 20px;
+      object-fit: contain;
+    }
     .card p{
       margin: 0;
       color: var(--muted);
@@ -684,32 +695,56 @@
         <div class="section-head">
           <div>
             <h2>Trusted by</h2>
-            <p>
-              Programs supporting AUTOBUS commercialization and development.
-            </p>
           </div>
         </div>
 
         <div class="grid-3" role="list" aria-label="Trusted by programs">
           <div class="card" role="listitem">
-            <h3>NSF I-Corps</h3>
-            <p>
-              National Science Foundation Innovation Corps program supporting customer discovery and commercialization.
-            </p>
+            <h3 class="program-title">
+              <img
+                class="program-icon"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/NSF_logo.svg/500px-NSF_logo.svg.png"
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                decoding="async"
+                width="20"
+                height="20"
+              />
+              <span>NSF I-Corps</span>
+            </h3>
           </div>
 
           <div class="card" role="listitem">
-            <h3>NVIDIA Inception</h3>
-            <p>
-              NVIDIA’s startup program supporting cutting-edge AI companies with resources and technical enablement.
-            </p>
+            <h3 class="program-title">
+              <img
+                class="program-icon"
+                src="https://cdn.simpleicons.org/nvidia/76B900"
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                decoding="async"
+                width="20"
+                height="20"
+              />
+              <span>NVIDIA Inception</span>
+            </h3>
           </div>
 
           <div class="card" role="listitem">
-            <h3>1752vc LAUNCHPAD</h3>
-            <p>
-              The program provides real frameworks, insights, and strategies to validate your idea and build a clear path to traction.
-            </p>
+            <h3 class="program-title">
+              <img
+                class="program-icon"
+                src="https://images.squarespace-cdn.com/content/v1/642b32d03753d13c5d01782f/48ba3a7a-8459-436e-b7e9-06d8897ce201/3.png"
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                decoding="async"
+                width="20"
+                height="20"
+              />
+              <span>1752vc LAUNCHPAD</span>
+            </h3>
           </div>
         </div>
       </div>
